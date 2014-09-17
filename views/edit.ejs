@@ -1,4 +1,8 @@
 <h1>Editing <%= fileName %></h1>
-<textarea>
-  <%= fileContents %>
-</textarea>
+
+<form action='save?file=<%= fileName %>' method='post'>
+  <textarea>
+<%= fileContents %>
+  </textarea>
+  <button type='submit'>Save</button>
+</form>

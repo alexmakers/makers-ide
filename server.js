@@ -21,6 +21,11 @@ app.get('/edit', function(request, response){
   });
 });
 
+app.post('/save', function(request, response){
+  var fileName = request.query.file;
+  response.redirect('/edit?file=' + fileName);
+});
+
 module.exports = server;
 if (!module.parent) {
   console.log('Server running on http://localhost:3000')

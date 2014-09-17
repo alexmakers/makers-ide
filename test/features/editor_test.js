@@ -38,6 +38,17 @@ describe('home page', function() {
 
     it('prepopulates the page with the current contents of the file', function(){
       expect(browser.text('textarea')).to.eql('Lorem ipsum');
-    })
-  })
+    });
+
+    describe('saving changes', function() {
+      before(function(done){
+        browser.fill("textarea", 'Hello').
+        pressButton('Save', done)
+      })
+
+      it('writes the changes to the file', function(){
+        expect(fs.readFileSync('code/_test.txt', 'utf8')).to.eql('Hello')
+      })
+    });
+  });
 });

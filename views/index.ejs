@@ -1,15 +1,7 @@
-<!doctype html>
-<html>
-  <head>
-    <title>Makers IDE</title>
-  </head>
-  <body>
-    <h1>Welcome to Makers IDE</h1>
+<h1>Welcome to Makers IDE</h1>
 
-    <nav class='files'>
-      <% files.forEach(function(file){ %>
-        <a href='#'><%= file %></a>
-      <% }) %>
-    </nav>
-  </body>
-</html>
+<nav class='files'>
+  <% files.forEach(function(file){ %>
+    <a href='/edit?file=<%= file %>'><%= file %></a>
+  <% }) %>
+</nav>

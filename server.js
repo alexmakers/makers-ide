@@ -10,6 +10,17 @@ app.get('/', function(request, response){
   })
 });
 
+app.get('/edit', function(request, response){
+  var fileName = request.query.file
+  fs.readFile('code/' + fileName, function (err, data) {
+    if (err) {
+      response.render('error')
+    } else {
+      response.render('edit', { fileName: fileName, fileContents: data });
+    }
+  });
+});
+
 module.exports = server;
 if (!module.parent) {
   console.log('Server running on http://localhost:3000')

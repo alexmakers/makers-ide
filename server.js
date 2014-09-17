@@ -1,10 +1,13 @@
 var app = require('express')();
 var server = require('http').Server(app);
+var fs = require('fs');
 
 app.set('view engine', 'ejs');
 
 app.get('/', function(request, response){
-  response.render('index')
+  fs.readdir('code', function(err, files) {
+    response.render('index', { files: files })
+  })
 });
 
 module.exports = server;

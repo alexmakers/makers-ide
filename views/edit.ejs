@@ -1,8 +1,27 @@
 <h1>Editing <%= fileName %></h1>
 
+<h3></h3>
 <form action='save?file=<%= fileName %>' method='post'>
-  <textarea>
+  <textarea name='content' data-filename='<%= fileName %>'>
 <%= fileContents %>
   </textarea>
   <button type='submit'>Save</button>
 </form>
+
+<script src='http://code.jquery.com/jquery-2.1.1.min.js'></script>
+<script src='/socket.io/socket.io.js'></script>
+<script>
+  var socket = io();
+
+  socket.on('userCountChanged', function(newUserCount){
+    $('h3').text(newUserCount + ' users online')
+  })
+
+  socket.on('fileChanged', function(contents){
+    $('textarea').val(contents);
+  })
+
+  $('textarea').on('keyup', function(){
+    socket.emit('textUpdated', { name: $(this).data('filename'), content: $(this).val() });
+  })
+</script>

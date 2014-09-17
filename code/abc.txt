@@ -1,1 +1,2 @@
-Hello
+def foo
+  bar  

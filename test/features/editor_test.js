@@ -3,7 +3,7 @@ var expect = require('expect.js')
 var Browser = require('zombie');
 var fs = require('fs');
 
-describe('home page', function() {
+describe('editor page', function() {
   var browser;
   
   before(function() {

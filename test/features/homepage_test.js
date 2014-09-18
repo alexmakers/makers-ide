@@ -34,5 +34,5 @@ describe('home page', function() {
     browser.clickLink('_test.txt', function(){
       expect(browser.location.pathname).to.eql('/edit?file=_test.txt');
     })
-  })
+  });
 });

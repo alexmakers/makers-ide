@@ -30,13 +30,19 @@ app.get('/edit', function(request, response){
   });
 });
 
-app.post('/save', function(request, response){
+app.post('/files', function(request, response){
   var fileName = request.query.file;
   fs.writeFile('code/' + fileName, request.body.content.trim(), function () {
     response.redirect('/edit?file=' + fileName);
   });
 });
 
+app.delete('/files', function(request, response) {
+  var fileName = request.query.file;
+  fs.unlink('code/' + fileName, function(){
+    response.send({status: 'File deleted'})
+  });
+})
 
 var userCount = 0;
 

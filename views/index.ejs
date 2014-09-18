@@ -1,10 +1,23 @@
 <h1>Welcome to Makers IDE</h1>
 
+<form class='new-file'>
+  <input type='text' name='filename' placeholder='Enter a filename'>
+  <button>+ New File</button>
+</form>
 <nav class='files'>
   <% files.forEach(function(file){ %>
     <a href='/edit?file=<%= file %>'>
       <%= file %>
-      <img src='/icon-pencil.png'>
+      <img src='/icon-pencil.png' class='edit'>
+      <img src='/icon-trash.png' data-file='<%= file %>' class='delete'>
     </a>
   <% }) %>
 </nav>
+
+<template id='new-file-template'>
+  <a href='/edit?file={{ file }}' class='new-item'>
+    {{ file }}
+    <img src='/icon-pencil.png' class='edit'>
+    <img src='/icon-trash.png' data-file='{{ file }}' class='delete'>
+  </a>
+</template>

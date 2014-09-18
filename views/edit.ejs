@@ -1,12 +1,11 @@
 <h1>Editing <%= fileName %></h1>
 
 <h3></h3>
-<form action='save?file=<%= fileName %>' data-filename='<%= fileName %>' method='post'>
+<form action='/files?file=<%= fileName %>' data-filename='<%= fileName %>' method='post'>
   <textarea id='content' name='content'><%= fileContents %></textarea>
-  <button type='submit'>Save</button>
+  <button type='submit' class='save'>Save</button>
 </form>
 
-<script src='http://code.jquery.com/jquery-2.1.1.min.js'></script>
 <script src='/socket.io/socket.io.js'></script>
 <script src='http://cdnjs.cloudflare.com/ajax/libs/codemirror/4.5.0/codemirror.js'></script>
 <script src='http://codemirror.net/mode/javascript/javascript.js'></script>

@@ -1,8 +1,8 @@
 <h1>Editing <%= fileName %></h1>
 
 <h3></h3>
-<form action='save?file=<%= fileName %>' method='post'>
-  <textarea name='content' data-filename='<%= fileName %>'>
+<form action='save?file=<%= fileName %>' data-filename='<%= fileName %>' method='post'>
+  <textarea id='content' name='content'>
 <%= fileContents %>
   </textarea>
   <button type='submit'>Save</button>
@@ -10,18 +10,39 @@
 
 <script src='http://code.jquery.com/jquery-2.1.1.min.js'></script>
 <script src='/socket.io/socket.io.js'></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/codemirror/4.5.0/codemirror.js'></script>
+<script src='http://codemirror.net/mode/javascript/javascript.js'></script>
+<script src='http://underscorejs.org/underscore-min.js'></script>
 <script>
-  var socket = io();
+  $(document).ready(function(){
+    var uid = Math.random().toString(36);
 
-  socket.on('userCountChanged', function(newUserCount){
-    $('h3').text(newUserCount + ' users online')
-  })
+    function updateFile(editor, change) {
+      console.log('yo')
+      socket.emit('textUpdated', { name: $('form').data('filename'), content: editor.getValue(), author: uid });
+    }
 
-  socket.on('fileChanged', function(contents){
-    $('textarea').val(contents);
-  })
+    var socket = io();
 
-  $('textarea').on('keyup', function(){
-    socket.emit('textUpdated', { name: $(this).data('filename'), content: $(this).val() });
+    socket.on('userCountChanged', function(newUserCount){
+      $('h3').text(newUserCount + ' users online')
+    })
+
+    socket.on('fileChanged', function(file){
+      if(uid == file.author) return;
+      console.log(file)
+
+
+      var cursorPos = editor.getCursor();
+      editor.setValue(file.content);
+      editor.setCursor(cursorPos);
+    })
+
+    var editor = CodeMirror.fromTextArea($('textarea')[0], {
+      lineNumbers: true,
+      mode: "javascript"
+    });
+
+    editor.on('keyup', updateFile);
   })
 </script>

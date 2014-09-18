@@ -2,6 +2,9 @@
 
 <nav class='files'>
   <% files.forEach(function(file){ %>
-    <a href='/edit?file=<%= file %>'><%= file %></a>
+    <a href='/edit?file=<%= file %>'>
+      <%= file %>
+      <img src='/icon-pencil.png'>
+    </a>
   <% }) %>
 </nav>

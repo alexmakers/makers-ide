@@ -5,6 +5,8 @@ var io = require('socket.io')(server);
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(require('express-ejs-layouts'));
+app.use(require('express').static('public'));
 
 app.set('view engine', 'ejs');
 
@@ -52,7 +54,7 @@ io.on('connect', function(socket){
 
   socket.on('textUpdated', function(file){
     fs.writeFile('code/' + file.name, file.content);
-    io.emit('fileChanged', file.content);
+    io.emit('fileChanged', { content: file.content, author: file.author });
   })
 })
 

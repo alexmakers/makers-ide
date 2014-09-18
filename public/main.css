@@ -1,0 +1,57 @@
+body {
+  background: #2980b9;
+  font-family: Lato;
+  margin: 0 150px;
+}
+
+h1 {
+  padding-top: 40px;
+  font: 300 3.2em/1.2 "Lato", sans-serif;
+  color: white;
+  margin: 0;
+  text-align: center
+}
+
+h3 {
+  font: 300 1.6em "Lato", sans-serif;
+  background: rgba(0,0,0,0.2);
+  text-align: center;
+  color: white;
+  padding: 6px 0 10px 0;
+  border-radius: 10px;
+}
+
+.files {
+  list-style-type: none;
+  max-width: 80%;
+  margin: 30px auto;
+}
+
+.files a {
+  opacity: 0.9;
+  display: block;
+  font-weight: 400;
+  box-shadow: 0 7px 0 -4px rgba(0, 0, 0, 0.2); 
+  color: #444;
+  text-align: left;
+  line-height: 30px;
+  font-size: 20px;
+  background-color: white;
+  margin-bottom: 10px;
+  padding: 10px;
+  padding-right: 60px;
+  position: relative;
+  word-wrap: break-word;
+  transition: opacity .3s ease;
+}
+
+.files a:hover {
+  opacity: 1;
+}
+
+.files a img {
+  width: 20px;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+}

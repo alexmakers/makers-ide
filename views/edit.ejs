@@ -17,7 +17,6 @@
     var uid = Math.random().toString(36);
 
     function updateFile(editor, change) {
-      console.log('yo')
       socket.emit('textUpdated', { name: $('form').data('filename'), content: editor.getValue(), author: uid });
     }
 
@@ -29,8 +28,6 @@
 
     socket.on('fileChanged', function(file){
       if(uid == file.author) return;
-      console.log(file)
-
 
       var cursorPos = editor.getCursor();
       editor.setValue(file.content);

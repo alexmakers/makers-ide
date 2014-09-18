@@ -53,7 +53,6 @@ io.on('connect', function(socket){
   })
 
   socket.on('textUpdated', function(file){
-    console.log(JSON.stringify(file.content.trim()))
     fs.writeFile('code/' + file.name, file.content.trim());
     io.emit('fileChanged', { content: file.content, author: file.author });
   })

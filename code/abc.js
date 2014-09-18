@@ -1,3 +1,3 @@
-function test() {
-	"hello world from Websockets!"
-});
+function hello() {
+  return 'Hello';
+}

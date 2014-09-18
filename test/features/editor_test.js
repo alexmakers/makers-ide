@@ -1,3 +1,4 @@
+process.env.NODE_ENV = 'test';
 var server = require('../../server');
 var expect = require('expect.js')
 var Browser = require('zombie');

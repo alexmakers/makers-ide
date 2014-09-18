@@ -17,13 +17,15 @@ app.get('/', function(request, response){
 });
 
 app.get('/edit', function(request, response){
-  var fileName = request.query.file
+  var fileName = request.query.file;
+  var codeMirrorDisabled = (process.env.NODE_ENV == 'test');
+
   fs.readFile('code/' + fileName, function (err, data) {
     if (err) {
       response.render('error')
     } else {
       var lang = { rb: 'ruby', js: 'javascript'}[fileName.slice(-2)];
-      response.render('edit', { fileName: fileName, fileContents: data, language: lang });
+      response.render('edit', { fileName: fileName, fileContents: data, language: lang, codeMirrorDisabled: codeMirrorDisabled });
     }
   });
 });

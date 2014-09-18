@@ -2,9 +2,7 @@
 
 <h3></h3>
 <form action='save?file=<%= fileName %>' data-filename='<%= fileName %>' method='post'>
-  <textarea id='content' name='content'>
-<%= fileContents %>
-  </textarea>
+  <textarea id='content' name='content'><%= fileContents %></textarea>
   <button type='submit'>Save</button>
 </form>
 
@@ -12,6 +10,7 @@
 <script src='/socket.io/socket.io.js'></script>
 <script src='http://cdnjs.cloudflare.com/ajax/libs/codemirror/4.5.0/codemirror.js'></script>
 <script src='http://codemirror.net/mode/javascript/javascript.js'></script>
+<script src='http://codemirror.net/mode/ruby/ruby.js'></script>
 <script src='http://underscorejs.org/underscore-min.js'></script>
 <script>
   $(document).ready(function(){
@@ -40,7 +39,7 @@
 
     var editor = CodeMirror.fromTextArea($('textarea')[0], {
       lineNumbers: true,
-      mode: "javascript"
+      mode: "<%= language %>"
     });
 
     editor.on('keyup', updateFile);

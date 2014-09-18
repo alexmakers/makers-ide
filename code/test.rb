@@ -1,3 +1,3 @@
-function test() {
-  return 'Heeeeeeffflaaaalo';
-}
+def foo
+  puts "Hello world"
+end

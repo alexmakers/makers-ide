@@ -22,15 +22,15 @@ app.get('/edit', function(request, response){
     if (err) {
       response.render('error')
     } else {
-      response.render('edit', { fileName: fileName, fileContents: data });
+      var lang = { rb: 'ruby', js: 'javascript'}[fileName.slice(-2)];
+      response.render('edit', { fileName: fileName, fileContents: data, language: lang });
     }
   });
 });
 
 app.post('/save', function(request, response){
   var fileName = request.query.file;
-
-  fs.writeFile('code/' + fileName, request.body.content, function () {
+  fs.writeFile('code/' + fileName, request.body.content.trim(), function () {
     response.redirect('/edit?file=' + fileName);
   });
 });
@@ -53,7 +53,8 @@ io.on('connect', function(socket){
   })
 
   socket.on('textUpdated', function(file){
-    fs.writeFile('code/' + file.name, file.content);
+    console.log(JSON.stringify(file.content.trim()))
+    fs.writeFile('code/' + file.name, file.content.trim());
     io.emit('fileChanged', { content: file.content, author: file.author });
   })
 })

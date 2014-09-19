@@ -2,7 +2,7 @@
 
 A super cool, multi-user IDE with [Node.js](http://nodejs.org), WebSockets, [CodeMirror](http://codemirror.net/), CSS animations. Built in a few hours so apologies for any code deficiencies :wink: :sparkling_heart:.
 
-![Makers IDE](https://github.com/makersacademy/makers-ide/raw/master/screen.png)
+![Makers IDE](https://raw.githubusercontent.com/alexmakers/makers-ide/master/screen.png)
 
 Testing is done with [mocha](https://github.com/visionmedia/mocha), [expect.js](https://github.com/LearnBoost/expect.js/) and [Zombie.js](https://github.com/assaf/zombie).
 
